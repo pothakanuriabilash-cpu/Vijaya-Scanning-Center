@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijaya Scanning Center - A5 Invoice</title>
+    <title>Vijaya Scanning Center - Half A4 Invoice</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { 
@@ -15,13 +15,16 @@
             .no-print { display: none !important; }
             body { background: white; padding: 0; margin: 0; }
             
+            /* Target exactly half of an A4 sheet (A5 size) */
             .receipt-container { 
                 width: 210mm; 
-                height: 148mm; 
+                height: 148mm; /* Half of 297mm */
                 padding: 8mm; 
                 margin: 0 auto;
                 box-sizing: border-box;
-                page-break-after: always;
+                position: absolute;
+                top: 0;
+                left: 0;
             }
             .outer-border {
                 border: 1px solid #000;
@@ -31,9 +34,11 @@
                 flex-direction: column;
                 box-sizing: border-box;
             }
-            @page { size: 210mm 148mm; margin: 0; }
+            /* Force the printer to recognize the A4 sheet but limit content to top half */
+            @page { size: A4 portrait; margin: 0; }
         }
 
+        /* Screen Preview Styling */
         .receipt-container {
             width: 210mm;
             height: 148mm;
@@ -104,7 +109,7 @@
                 <input type="text" id="cIn" oninput="sync()" value="VIJAYA SCANNING CENTER" class="w-full border-b font-bold text-xs">
                 <input type="text" id="aIn" oninput="sync()" value="Cellar, Below Oxyvision, Pillar No. 21, Main Road, Medchal – 501401, Telangana, India" class="w-full border-b text-[10px]">
                 <input type="text" id="hMob" oninput="sync()" value="8106478229" placeholder="Header Mobile Number" class="w-full border-b text-[10px]">
-                <button onclick="window.print()" class="w-full mt-2 bg-green-700 text-white py-2 rounded font-bold uppercase text-xs">Print Bill</button>
+                <button onclick="window.print()" class="w-full mt-2 bg-green-700 text-white py-2 rounded font-bold uppercase text-xs">Print Half-Page Bill</button>
             </div>
         </div>
     </div>
