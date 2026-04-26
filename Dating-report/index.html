@@ -1,6 +1,54 @@
-<div class="report-title">EARLY PREGNANCY / DATING SCAN</div>
-<table>
-    <tr><td><b>Gestational Sac</b></td><td><input type="text" value="Seen" style="width: 80px;"></td><td><b>Yolk Sac:</b> <input type="text" value="Visible" style="width: 80px;"></td></tr>
-    <tr><td><b>CRL (mm)</b></td><td><input type="number" step="0.1" style="width: 60px;"></td><td><b>Fetal Heart:</b> <select><option>Seen / Regular</option><option>Not Seen</option></select></td></tr>
-    <tr><td><b>Gestational Age</b></td><td><input type="number" style="width: 35px;"> w <input type="number" style="width: 30px;"> d</td><td><b>EDD:</b> <input type="date"></td></tr>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dating Scan Report</title>
+    <style>
+        :root { --accent-brown: #a1887f; --soft-bg: #efebe9; }
+        body { font-family: Arial, sans-serif; background-color: #d7ccc8; margin: 0; padding: 10px; }
+        .page { background-color: white; width: 210mm; height: 297mm; margin: 0 auto; padding: 0 15mm; box-sizing: border-box; display: flex; flex-direction: column; }
+        .letterhead-space { height: 45mm; }
+        .footer-space { height: 15mm; margin-top: auto; }
+        input, select { border: 1.5px solid var(--accent-brown); background-color: var(--soft-bg); padding: 3px; border-radius: 4px; font-weight: bold; }
+        .patient-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; }
+        .report-title { text-align: center; text-decoration: underline; font-weight: bold; font-size: 18px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; font-size: 14px; }
+        .no-print { position: fixed; top: 20px; left: 20px; background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--accent-brown); z-index: 100; }
+        button { background-color: #5d4037; color: white; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        @media print { .no-print { display: none !important; } .page { box-shadow: none; margin: 0; } input, select { border: none !important; background: none !important; appearance: none; } }
+    </style>
+</head>
+<body>
+<div class="no-print"><button onclick="window.print()">PRINT DATING SCAN</button></div>
+<div class="page">
+    <div class="letterhead-space"></div>
+    <div class="patient-row">
+        <span>NAME: <input type="text" value="MRS. " style="width: 200px;"></span>
+        <span>AGE: <input type="number" style="width: 45px;"> Yrs</span>
+        <span>DATE: <input type="date" id="todayDate"></span>
+    </div>
+    <div class="report-title">EARLY PREGNANCY / DATING SCAN</div>
+    <table>
+        <tr>
+            <td><b>Gestational Sac</b></td>
+            <td><input type="text" value="Intrauterine Seen" style="width: 150px;"></td>
+            <td><b>Yolk Sac:</b> <select><option>Seen</option><option>Not Seen</option></select></td>
+        </tr>
+        <tr>
+            <td><b>CRL (Crown Rump Length)</b></td>
+            <td><input type="number" step="0.1" style="width: 60px;"> mm</td>
+            <td><b>Fetal Heart Rate:</b> <input type="number" style="width: 60px;"> bpm</td>
+        </tr>
+        <tr>
+            <td><b>Gestational Age</b></td>
+            <td><input type="number" style="width: 35px;"> weeks <input type="number" style="width: 30px;"> days</td>
+            <td><b>EDD by Scan:</b> <input type="date"></td>
+        </tr>
+    </table>
+    <p><strong>IMPRESSION:</strong> Single intrauterine live gestation of <input type="number" style="width: 35px;"> weeks.</p>
+    <div class="footer-space"></div>
+</div>
+<script>document.getElementById('todayDate').valueAsDate = new Date();</script>
+</body>
+</html>
