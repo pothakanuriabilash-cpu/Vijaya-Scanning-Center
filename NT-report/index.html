@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NT Scan Report</title>
+    <style>
+        :root { --accent-brown: #a1887f; --soft-bg: #efebe9; }
+        body { font-family: Arial, sans-serif; background-color: #d7ccc8; margin: 0; padding: 10px; }
+        .page { background-color: white; width: 210mm; height: 297mm; margin: 0 auto; padding: 0 15mm; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; }
+        .letterhead-space { height: 45mm; flex-shrink: 0; }
+        .footer-space { height: 15mm; margin-top: auto; flex-shrink: 0; }
+        input, select { border: 1.5px solid var(--accent-brown); background-color: var(--soft-bg); padding: 2px 4px; border-radius: 4px; font-size: 12px; font-weight: bold; outline: none; font-family: inherit; }
+        .patient-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 13px; }
+        .report-title { text-align: center; text-decoration: underline; font-weight: bold; font-size: 18px; margin: 8px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+        th, td { border: 1px solid black; padding: 6px; text-align: left; font-size: 13px; }
+        .label { font-weight: bold; width: 240px; display: inline-block; margin: 5px 0; }
+        .no-print { position: fixed; top: 20px; left: 20px; background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--accent-brown); z-index: 100; }
+        button { background-color: #5d4037; color: white; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        @media print { .no-print { display: none !important; } body { background: none; padding: 0; } .page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; padding: 0 15mm; } input, select { border: none !important; background: none !important; padding: 0 !important; appearance: none; } @page { size: A4; margin: 0; } }
+    </style>
+</head>
+<body>
+<div class="no-print"><button onclick="window.print()">PRINT NT SCAN</button></div>
+<div class="page">
+    <div class="letterhead-space"></div>
+    <div class="patient-row">
+        <span>NAME : <input type="text" value="MRS." style="width: 200px;"></span>
+        <span>AGE : <input type="number" style="width: 45px;"> Years</span>
+        <span>SEX : <select><option>Female</option><option>Male</option></select></span>
+        <span>DATE : <input type="date" id="todayDate"></span>
+    </div>
+    <div class="report-title">NT / FIRST TRIMESTER SCAN</div>
+    <p><strong>FINDINGS:</strong></p>
+    <table>
+        <tr><td style="width: 40%;"><b>CRL (Crown Rump Length)</b></td><td><input type="number" step="0.1" style="width: 60px;"> mm</td><td><input type="number" style="width: 35px;"> w <input type="number" style="width: 30px;"> d</td></tr>
+        <tr><td><b>Nuchal Translucency (NT)</b></td><td><input type="number" step="0.1" style="width: 60px;"> mm</td><td><b>Nasal Bone:</b> <select><option>Present</option><option>Hypoplastic</option><option>Absent</option></select></td></tr>
+        <tr><td><b>Fetal Heart Rate (FHR)</b></td><td><input type="number" style="width: 60px;"> bpm</td><td><b>Ductus Venosus:</b> <input type="text" value="Normal" style="width: 80px;"></td></tr>
+    </table>
+    <div>
+        <span class="label">Skull / Brain:</span> <input type="text" value="Appears Normal" style="width: 300px;"><br>
+        <span class="label">Spine:</span> <input type="text" value="Intact" style="width: 300px;"><br>
+        <span class="label">Abdominal Wall:</span> <input type="text" value="Normal" style="width: 300px;"><br>
+        <span class="label">Stomach Bubble:</span> <input type="text" value="Visible" style="width: 300px;"><br>
+        <span class="label">Urinary Bladder:</span> <input type="text" value="Visible" style="width: 300px;"><br>
+        <span class="label">Upper & Lower Limbs:</span> <input type="text" value="All 4 limbs seen" style="width: 300px;">
+    </div>
+    <div class="footer-space"></div>
+</div>
+<script>document.getElementById('todayDate').valueAsDate = new Date();</script>
+</body>
+</html>

@@ -19,19 +19,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             color: #1e293b;
         }
 
         .portal-container {
             text-align: center;
             width: 100%;
-            max-width: 800px;
-            padding: 20px;
+            max-width: 1000px;
+            padding: 40px 20px;
         }
 
         .header {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .header h1 {
@@ -49,15 +49,15 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             padding: 10px;
         }
 
         .tool-card {
             background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
+            padding: 30px 20px;
+            border-radius: 15px;
             text-decoration: none;
             color: inherit;
             box-shadow: var(--card-shadow);
@@ -75,15 +75,15 @@
         }
 
         .icon-circle {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background-color: #f1f5f9;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
-            margin-bottom: 20px;
+            font-size: 30px;
+            margin-bottom: 15px;
             transition: background-color 0.3s;
         }
 
@@ -92,20 +92,20 @@
         }
 
         .tool-name {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: #0f172a;
         }
 
         .tool-desc {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: #64748b;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 60px;
             font-size: 0.85rem;
             color: #94a3b8;
         }
@@ -121,25 +121,37 @@
     <div class="portal-container">
         <div class="header">
             <h1>VIJAYA SCANNING CENTER</h1>
-            <p>Fetal Medicine Center & Digital Tools</p>
+            <p>Fetal Medicine Center | Administrative Tools Portal</p>
         </div>
         
         <div class="menu-grid">
             <a href="billing-app/index.html" class="tool-card">
                 <div class="icon-circle">🧾</div>
-                <div class="tool-name">Medical Billing</div>
-                <div class="tool-desc">Generate and print patient bills with professional formatting and referral details.</div>
+                <div class="tool-name">Billing App</div>
+                <div class="tool-desc">Create and print medical bills for hospital services.</div>
+            </a>
+
+            <a href="NT-report/index.html" class="tool-card">
+                <div class="icon-circle">🔍</div>
+                <div class="tool-name">NT Report</div>
+                <div class="tool-desc">1st Trimester Nuchal Translucency & Early Anatomy report.</div>
             </a>
 
             <a href="tiffa-report/index.html" class="tool-card">
                 <div class="icon-circle">👶</div>
                 <div class="tool-name">TIFFA Report</div>
-                <div class="tool-desc">Input ultrasound data to generate scan reports optimized for pre-printed letterheads.</div>
+                <div class="tool-desc">Detailed 2nd Trimester Anomaly scan with centile graphs.</div>
+            </a>
+
+            <a href="Growth-report/index.html" class="tool-card">
+                <div class="icon-circle">📈</div>
+                <div class="tool-name">Growth Report</div>
+                <div class="tool-desc">Late Trimester Growth, Doppler, and Biometry tracking.</div>
             </a>
         </div>
 
         <div class="footer">
-            © 2026 Vijaya Scanning Center | Internal Administration Portal
+            © 2026 Vijaya Scanning Center | Internal Use Only
         </div>
     </div>
 

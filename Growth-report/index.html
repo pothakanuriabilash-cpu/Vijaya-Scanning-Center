@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Scan Report</title>
+    <style>
+        :root { --accent-brown: #a1887f; --soft-bg: #efebe9; }
+        body { font-family: Arial, sans-serif; background-color: #d7ccc8; margin: 0; padding: 10px; }
+        .page { background-color: white; width: 210mm; height: 297mm; margin: 0 auto; padding: 0 15mm; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; }
+        .letterhead-space { height: 45mm; flex-shrink: 0; }
+        .footer-space { height: 15mm; margin-top: auto; flex-shrink: 0; }
+        input, select { border: 1.5px solid var(--accent-brown); background-color: var(--soft-bg); padding: 2px 4px; border-radius: 4px; font-size: 12px; font-weight: bold; outline: none; font-family: inherit; }
+        .patient-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 13px; }
+        .report-title { text-align: center; text-decoration: underline; font-weight: bold; font-size: 18px; margin: 8px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+        th, td { border: 1px solid black; padding: 5px; text-align: left; font-size: 13px; }
+        .graph-container { display: flex; align-items: center; gap: 10px; width: 180px; }
+        .whisker-line { position: relative; width: 100px; height: 1px; background: black; }
+        .whisker-line::before, .whisker-line::after { content: ''; position: absolute; top: -5px; width: 1px; height: 10px; background: black; }
+        .whisker-line::after { right: 0; }
+        .dot { position: absolute; top: -4px; width: 8px; height: 8px; background: black; border-radius: 50%; transform: translateX(-50%); transition: left 0.3s; }
+        .label { font-weight: bold; width: 240px; display: inline-block; margin: 5px 0; }
+        .no-print { position: fixed; top: 20px; left: 20px; background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--accent-brown); z-index: 100; }
+        button { background-color: #5d4037; color: white; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        @media print { .no-print { display: none !important; } body { background: none; padding: 0; } .page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; padding: 0 15mm; } input, select { border: none !important; background: none !important; padding: 0 !important; appearance: none; } .whisker-line { -webkit-print-color-adjust: exact; } @page { size: A4; margin: 0; } }
+    </style>
+</head>
+<body>
+<div class="no-print"><button onclick="window.print()">PRINT GROWTH SCAN</button></div>
+<div class="page">
+    <div class="letterhead-space"></div>
+    <div class="patient-row">
+        <span>NAME : <input type="text" value="MRS." style="width: 200px;"></span>
+        <span>AGE : <input type="number" style="width: 45px;"> Years</span>
+        <span>DATE : <input type="date" id="todayDate"></span>
+    </div>
+    <div class="report-title">FETAL GROWTH & DOPPLER STUDY</div>
+    <p><strong>BIOMETRY (Mediscan, Unit: mm):</strong></p>
+    <table>
+        <tr><td><b>BPD</b></td><td><input type="number" step="0.1" style="width: 60px;"> , <input type="number" style="width: 30px;">W <input type="number" style="width: 25px;">D</td><td><div class="graph-container"><div class="whisker-line"><div class="dot" id="dot-bpd" style="left: 50%;"></div></div>(<input type="number" value="50" style="width: 35px;" oninput="updateDot('bpd', this.value)">%)</div></td></tr>
+        <tr><td><b>HC</b></td><td><input type="number" step="0.1" style="width: 60px;"> , <input type="number" style="width: 30px;">W <input type="number" style="width: 25px;">D</td><td><div class="graph-container"><div class="whisker-line"><div class="dot" id="dot-hc" style="left: 50%;"></div></div>(<input type="number" value="50" style="width: 35px;" oninput="updateDot('hc', this.value)">%)</div></td></tr>
+        <tr><td><b>AC</b></td><td><input type="number" step="0.1" style="width: 60px;"> , <input type="number" style="width: 30px;">W <input type="number" style="width: 25px;">D</td><td><div class="graph-container"><div class="whisker-line"><div class="dot" id="dot-ac" style="left: 50%;"></div></div>(<input type="number" value="50" style="width: 35px;" oninput="updateDot('ac', this.value)">%)</div></td></tr>
+        <tr><td><b>FL</b></td><td><input type="number" step="0.1" style="width: 60px;"> , <input type="number" style="width: 30px;">W <input type="number" style="width: 25px;">D</td><td><div class="graph-container"><div class="whisker-line"><div class="dot" id="dot-fl" style="left: 50%;"></div></div>(<input type="number" value="50" style="width: 35px;" oninput="updateDot('fl', this.value)">%)</div></td></tr>
+    </table>
+    <div style="margin-top: 10px;">
+        <span class="label">Estimated Fetal Weight:</span> <input type="number" style="width: 60px;"> gms +/- <input type="number" style="width: 45px;"> gms<br>
+        <span class="label">Liquor / AFV:</span> <input type="text" value="Adequate" style="width: 150px;"><br>
+        <span class="label">Umbilical Artery (PI):</span> <input type="number" step="0.01" style="width: 60px;"><br>
+        <span class="label">Middle Cerebral Art. (PI):</span> <input type="number" step="0.01" style="width: 60px;">
+    </div>
+    <div class="footer-space"></div>
+</div>
+<script>
+    document.getElementById('todayDate').valueAsDate = new Date();
+    function updateDot(id, val) { document.getElementById('dot-' + id).style.left = Math.min(Math.max(val, 0), 100) + '%'; }
+</script>
+</body>
+</html>
