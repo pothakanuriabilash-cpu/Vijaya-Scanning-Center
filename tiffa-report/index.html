@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIFFA Report - Compact Print</title>
+    <title>TIFFA Report - Professional Print</title>
     <style>
         :root {
             --accent-brown: #a1887f;
@@ -20,20 +20,20 @@
         .page {
             background-color: white;
             width: 210mm;
-            height: 297mm;
-            margin: 0 auto;
+            min-height: 297mm;
+            margin: 0 auto 20px auto;
             padding: 0 15mm;
             box-sizing: border-box;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            position: relative;
         }
         
         .letterhead-space { height: 45mm; flex-shrink: 0; }
         .footer-space { height: 15mm; margin-top: auto; flex-shrink: 0; }
 
-        input, select {
+        input, select, textarea {
             border: 1.5px solid var(--accent-brown);
             background-color: var(--soft-bg);
             padding: 2px 4px;
@@ -58,6 +58,18 @@
             font-weight: bold;
             font-size: 18px;
             margin: 8px 0;
+        }
+
+        /* Page 2 Specific Styling */
+        .study-section {
+            margin-bottom: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .study-label {
+            font-weight: bold;
+            text-decoration: underline;
+            display: inline;
         }
 
         .limitations-text {
@@ -140,8 +152,15 @@
         @media print {
             .no-print { display: none !important; }
             body { background: none; padding: 0; }
-            .page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; padding: 0 15mm; }
-            input, select { border: none !important; background: none !important; padding: 0 !important; appearance: none; }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                width: 210mm; 
+                height: 297mm; 
+                padding: 0 15mm; 
+                page-break-after: always;
+            }
+            input, select, textarea { border: none !important; background: none !important; padding: 0 !important; appearance: none; }
             .whisker-line { -webkit-print-color-adjust: exact; }
             @page { size: A4; margin: 0; }
         }
@@ -150,10 +169,10 @@
 <body>
 
     <div class="no-print">
-        <button onclick="window.print()">PRINT REPORT</button>
-</div>
+        <button onclick="window.print()">PRINT FULL REPORT</button>
+    </div>
 
-<div class="page">
+<div class="page" id="page1">
     <div class="letterhead-space"></div>
 
     <div class="patient-row">
@@ -170,7 +189,7 @@
     <div class="report-title">TIFFA ULTRA SOUND SCAN</div>
 
     <div class="limitations-text">
-        LIMITATIONS: Accuracy of scan is only 70% due to various technical reasons (like gestational age, amount of liquor, fetal position and fetal movements and maternal abdominal wall thickness) For complete evaluation of fetal heart, 2d echo is suggested All chromosomal anomalies and genetical syndrome cannot be ruled out. Certain anomalies like cranio-synostosis CPAM abnominal and Intracranial masses, bowel dialatation manifestations of vascular insults like ventriculo malacia, amniotic band syndrome and manifestations of Infections like parvo, toxoplasmosis etc can appear in 3d trimester. Even in the best of hands, a small percentage of fetal anomalles will remain undetected Internationally accepted detection rate of major abnormalities Is around 70% Hence we are not responsible for any claims I understand that the sex of fetus will not be disclosed by me.
+        LIMITATIONS: Accuracy of scan is only 70% due to various technical reasons (like gestational age, amount of liquor, fetal position and fetal movements and maternal abdominal wall thickness) For complete evaluation of fetal heart, 2d echo is suggested All chromosomal anomalies and genetical syndrome cannot be ruled out.
     </div>
 
     <p style="font-weight: bold; margin-bottom: 5px;">A SINGLE INTRAUTERINE LIVE FETUS IS SEEN .</p>
@@ -213,7 +232,7 @@
             <td style="width: 10%;"><b>BPD</b></td>
             <td style="width: 40%;">
                 <input type="number" step="0.1" value="49.4" style="width: 60px;"> , 
-                <input type="number" value="20" style="width: 35px;">Weeks <input type="number" value="3" style="width: 30px;">Days
+                <input type="number" value="20" style="width: 35px;">W <input type="number" value="3" style="width: 30px;">D
             </td>
             <td>
                 <div class="graph-container">
@@ -229,7 +248,7 @@
             <td><b>HC</b></td>
             <td>
                 <input type="number" step="0.1" value="183.3" style="width: 60px;"> , 
-                <input type="number" value="21" style="width: 35px;">Weeks <input type="number" value="3" style="width: 30px;">Days
+                <input type="number" value="21" style="width: 35px;">W
             </td>
             <td>
                 <div class="graph-container">
@@ -245,7 +264,7 @@
             <td><b>AC</b></td>
             <td>
                 <input type="number" step="0.1" value="156.3" style="width: 60px;"> , 
-                <input type="number" value="20" style="width: 35px;">Weeks <input type="number" value="6" style="width: 30px;">Days
+                <input type="number" value="20" style="width: 35px;">W <input type="number" value="6" style="width: 30px;">D
             </td>
             <td>
                 <div class="graph-container">
@@ -261,7 +280,7 @@
             <td><b>FL</b></td>
             <td>
                 <input type="number" step="0.1" value="30.9" style="width: 60px;"> , 
-                <input type="number" value="19" style="width: 35px;">Weeks <input type="number" value="1" style="width: 30px;">Days
+                <input type="number" value="19" style="width: 35px;">W <input type="number" value="1" style="width: 30px;">D
             </td>
             <td>
                 <div class="graph-container">
@@ -275,17 +294,80 @@
         </tr>
     </table>
 
-    <p style="margin: 10px 0;">
-        FETAL CARDIAC PULSATIONS ARE SEEN, FHR - <input type="number" value="146" style="width: 55px;"> / B / MIN.<br>
-        FETAL BODY MOVEMENTS AND TONE NORMAL.
-    </p>
-
-    <div style="line-height: 1.4;">
-        <div><span class="label">PLACENTA:</span> <input type="text" value="POSTERIOR LOWER SEGMENT" style="width: 350px;"></div>
-        <div><span class="label">PRESENTATION:</span> <input type="text" value="BREECH AT PRESENT" style="width: 250px;"></div>
-        <div><span class="label">LIQUOR:</span> <input type="text" value="ADEQUATE" style="width: 150px;"></div>
-        <div><span class="label">ESTIMATED FETAL WEIGHT ( EFW ):</span> <input type="number" value="347" style="width: 60px;"> GMS +/- <input type="number" value="36" style="width: 50px;"> GMS</div>
+    <div style="line-height: 1.4; margin-top: 10px;">
+        <div><span class="label">PLACENTA:</span> <input type="text" value="POSTERIOR LOWER SEGMENT" style="width: 300px;"></div>
+        <div><span class="label">ESTIMATED FETAL WEIGHT ( EFW ):</span> <input type="number" value="347" style="width: 60px;"> GMS +/- 36 GMS</div>
         <div><span class="label">CERVICAL LENGTH:</span> <input type="number" value="3" style="width: 50px;"> CM <b>INTERNAL OS CLOSED</b></div>
+    </div>
+
+    <div class="footer-space"></div>
+</div>
+
+<div class="page" id="page2">
+    <div class="letterhead-space"></div>
+
+    <div class="report-title">TIFFA STUDY :</div>
+
+    <div class="study-section">
+        <span class="study-label">BRAIN :</span> 
+        LATERAL VENTRICLE SIZE: <input type="text" value="NORMAL" style="width: 80px;">, 
+        CAVUM SEPTUM PELLUCIDUM(CSP): <input type="text" value="SEEN AND NORMAL" style="width: 150px;">, 
+        ANTERIOR COMPLEX: <input type="text" value="SEEN AND NORMAL" style="width: 150px;">, 
+        CISTERNA MAGNA: <input type="text" value="NORMAL" style="width: 80px;">, 
+        CEREBELLUM: <input type="text" value="NORMAL" style="width: 80px;">, 
+        NUCHAL FOLD: <input type="text" value="NORMAL" style="width: 80px;">.
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">HEART :</span> 
+        AXIS AND ROTATION <input type="text" value="NORMAL" style="width: 70px;">, 
+        LVOT AND RVOT <input type="text" value="NORMAL" style="width: 70px;">. 
+        PAS VIEW <input type="text" value="NORMAL" style="width: 70px;">, 
+        FOUR CHAMBER VIEW <input type="text" value="NORMAL" style="width: 70px;">. 
+        <br><i>ADVISED FETAL ECHO TO RULE OUT ALL ANOMALIES OF HEART.</i>
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">LUNGS :</span> 
+        NORMAL IN ECHOGENICITY. NO OBVIOUS CPAM CLE SEEN. 
+        NO OBVIOUS INTRA ABDOMINAL ORGANS SEEN HERNIATING TO THE THORAX.
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">ABDOMEN :</span> 
+        STOMACH BUBBLE VISUALIZED AND NORMAL SIZE. NO OBVIOUS DOUBLE/TRIPLE BUBBLE SEEN. 
+        SITUS <input type="text" value="NORMAL" style="width: 70px;">. 
+        BOTH KIDNEYS: <input type="text" value="NORMAL" style="width: 150px;">. 
+        URINARY BLADDER: <input type="text" value="NORMAL" style="width: 100px;">.
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">SPINE & LIMBS :</span> 
+        SPINE: <input type="text" value="NORMAL" style="width: 80px;">. 
+        SKIN ABOVE SPINE SEEN. 
+        LIMBS (Humerus, Radius, Ulna, Femur, Tibia, Fibula): <input type="text" value="NORMAL IN LENGTH AND SYMMETRIC" style="width: 250px;">.
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">FACE :</span> 
+        ORBITS: <input type="text" value="NORMAL" style="width: 80px;">. 
+        LIPS: <input type="text" value="NORMAL" style="width: 80px;">. 
+        NASAL BONE SEEN. PINNA: NORMAL.
+    </div>
+
+    <div class="study-section">
+        <span class="study-label">UMBILICAL CORD :</span> 
+        TWO ARTERY AND ONE VEIN (3VC). CENTRAL CORD INSERTION. 
+        NO GASTROCHISIS OR OMPHALOCELE.
+    </div>
+
+    <div style="margin-top: 20px; font-weight: bold;">
+        IMPRESSION : <input type="text" value="TIFFA NORMAL." style="width: 300px;">
+        <br><i>ADVISED FETAL ECHO AT 24 WKS.</i>
+    </div>
+
+    <div style="margin-top: 30px; text-align: right;">
+        <p><strong>DR.M.MADHAVI LATHA, MD</strong><br>FETAL MEDICINE SPECIALIST</p>
     </div>
 
     <div class="footer-space"></div>
@@ -296,7 +378,6 @@
 
     function updateDot(id, val) {
         const dot = document.getElementById('dot-' + id);
-        // Ensure value is between 0 and 100 for graph display
         let percent = Math.min(Math.max(val, 0), 100);
         dot.style.left = percent + '%';
     }
