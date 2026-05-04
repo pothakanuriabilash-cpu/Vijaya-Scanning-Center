@@ -41,7 +41,6 @@
         }
         .header-table td { border: 1px solid #000; padding: 4px 8px; }
 
-        /* Updated Title Selection Styles */
         .report-title-container { text-align: center; margin: 10px 0; }
         .report-title-select {
             text-align-last: center;
@@ -148,13 +147,6 @@
             background: transparent;
         }
 
-        .growth-summary {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px double #000;
-            background-color: #fcfcfc;
-        }
-
         input, select {
             border: 1px solid var(--accent-brown);
             background-color: var(--soft-bg);
@@ -163,8 +155,6 @@
             font-weight: bold;
             text-align: center;
         }
-
-        .ga-row { margin-top: 4px; font-size: 10px; }
 
         .no-print {
             position: fixed;
@@ -246,33 +236,14 @@
         </select>
     </div>
 
-    <span class="section-title">Maternal Findings</span>
-    <div class="section-text">Cervix measured <input type="number" step="0.01" value="3.20" style="width: 60px;"> cm in length.</div>
-
-    <div class="doppler-grid">
-        <div class="doppler-box">
-            <b>Right Uterine PI</b><br>
-            <input type="number" step="0.01" value="0.80" oninput="updateDoppler('rpi', this.value, 0.1, 2.4)">
-            <div class="whisker-line"><div class="dot" id="dot-rpi" style="left: 35%;"></div></div>
-            <div class="centile-labels"><span>0.1</span><span>Mean</span><span>2.4</span></div>
-        </div>
-        <div class="doppler-box">
-            <b>Left Uterine PI</b><br>
-            <input type="number" step="0.01" value="0.75" oninput="updateDoppler('lpi', this.value, 0.1, 2.4)">
-            <div class="whisker-line"><div class="dot" id="dot-lpi" style="left: 30%;"></div></div>
-            <div class="centile-labels"><span>0.1</span><span>Mean</span><span>2.4</span></div>
-        </div>
-        <div class="doppler-box">
-            <b>Mean PI</b><br>
-            <input type="number" step="0.01" value="0.77" oninput="updateDoppler('mpi', this.value, 0.1, 2.4)">
-            <div class="whisker-line"><div class="dot" id="dot-mpi" style="left: 32%;"></div></div>
-            <div class="centile-labels"><span>0.1</span><span>Mean</span><span>2.4</span></div>
-        </div>
-    </div>
-
     <span class="section-title">Fetus Survey</span>
     <div class="section-text">
-        Presentation: <select><option>Cephalic</option><option>Breech</option><option>Transverse</option></select> | 
+        Presentation: <select>
+            <option>Cephalic</option>
+            <option>Breech</option>
+            <option>Transverse</option>
+            <option>Placental</option>
+        </select> | 
         Liquor: <select><option>Normal</option><option>Excess</option><option>Less</option><option>Slightly excess</option><option>Slightly less</option><option>Very Less</option></select>
     </div>
     <div class="section-text">
@@ -336,12 +307,6 @@
         </div>
     </div>
 
-    <div class="growth-summary">
-        <strong>GROWTH ASSESSMENT:</strong><br>
-        Estimated Fetal Weight (EFW) is <strong><input type="number" value="123" id="efwValue" style="width: 60px;"> grams</strong> 
-        (+/- <input type="number" value="12.3" step="0.1" style="width: 50px;"> gms).
-    </div>
-
     <span class="section-title">Impression</span>
     <div class="section-text">
         Single intrauterine gestation corresponding to a gestational age of 
@@ -372,45 +337,32 @@
         }
     }
 
-    function updateDoppler(id, val, min, max) {
-        const dot = document.getElementById('dot-' + id);
-        if(dot) {
-            let percent = ((val - min) / (max - min)) * 100;
-            dot.style.left = Math.min(Math.max(percent, 0), 100) + '%';
-        }
-    }
-
     function calculateDates() {
         const lmpValue = document.getElementById('lmpDate').value;
         if (!lmpValue) return;
-
         const lmp = new Date(lmpValue);
         
         // 1. Calculate EDD (LMP + 9 months + 7 days)
         const edd = new Date(lmp);
         edd.setMonth(edd.getMonth() + 9);
         edd.setDate(edd.getDate() + 7);
-        
         const eddFormatted = edd.toISOString().split('T')[0];
         document.getElementById('lmpEdd').value = eddFormatted;
         document.getElementById('cedd').value = eddFormatted;
         document.getElementById('impEdd').value = eddFormatted;
 
-        // 2. Calculate Gestational Age (Today - LMP)
+        // 2. Calculate Gestational Age
         const today = new Date();
-        const diffTime = Math.abs(today - lmp);
+        const diffTime = today - lmp;
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-        
+        if(diffDays < 0) return;
         const weeks = Math.floor(diffDays / 7);
         const days = diffDays % 7;
 
-        // Update Header GA
         document.getElementById('gaWeeks').value = weeks;
         document.getElementById('gaDays').value = days;
         document.getElementById('gaWeeks2').value = weeks;
         document.getElementById('gaDays2').value = days;
-
-        // Update Impression GA
         document.getElementById('impWeeks').value = weeks;
         document.getElementById('impDays').value = days;
     }
