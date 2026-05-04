@@ -226,14 +226,14 @@
             <td><b>Referred By</b></td>
             <td><input type="text" value="Dr. Sarah Oosman" style="width: 95%; text-align: left;"></td>
             <td><b>Visit Date</b></td>
-            <td><input type="date" value="2024-02-21"></td>
+            <td><input type="date" value="2026-05-04" id="visitDate"></td>
         </tr>
         <tr>
             <td><b>LMP Date</b></td>
             <td colspan="3">
-                <input type="date" value="2023-11-04"> 
-                &nbsp; LMP EDD: <input type="date" value="2024-08-10"> [GA: <input type="number" value="15" style="width:35px;">W <input type="number" value="4" style="width:30px;">D] 
-                | C-EDD: <input type="date" value="2024-08-11"> [GA: <input type="number" value="15" style="width:35px;">W <input type="number" value="3" style="width:30px;">D]
+                <input type="date" id="lmpDate" onchange="calculateDates()"> 
+                &nbsp; LMP EDD: <input type="date" id="lmpEdd"> [GA: <input type="number" id="gaWeeks" style="width:30px;">W <input type="number" id="gaDays" style="width:30px;">D] 
+                | C-EDD: <input type="date" id="cedd"> [GA: <input type="number" id="gaWeeks2" style="width:30px;">W <input type="number" id="gaDays2" style="width:30px;">D]
             </td>
         </tr>
     </table>
@@ -283,36 +283,36 @@
     <span class="section-title">Biometry (Hadlock)</span>
     <div class="doppler-grid">
         <div class="doppler-box">
-            <b>BPD: <input type="number" step="0.1" value="31.3" style="width:50px;"> mm</b>
-            <div class="ga-row"><input type="number" value="15" style="width:30px;">W <input type="number" value="5" style="width:25px;">D</div>
+            <b>BPD: <input type="number" step="0.1" value="31.3" style="width:50px;"> mm</b><br>
+            <input type="number" value="15" style="width:30px;">W <input type="number" value="5" style="width:25px;">D
             <div class="whisker-line"><div class="dot" id="dot-bpd" style="left: 50%;"></div></div>
             <div class="centile-labels"><span>5%</span><span>50%</span><span>95%</span></div>
             <div style="margin-top:5px;"><input type="number" value="50" oninput="moveDot('bpd', this.value)" style="width:40px;"> %</div>
         </div>
         <div class="doppler-box">
-            <b>HC: <input type="number" step="0.1" value="111.6" style="width:55px;"> mm</b>
-            <div class="ga-row"><input type="number" value="15" style="width:30px;">W <input type="number" value="0" style="width:25px;">D</div>
+            <b>HC: <input type="number" step="0.1" value="111.6" style="width:55px;"> mm</b><br>
+            <input type="number" value="15" style="width:30px;">W <input type="number" value="0" style="width:25px;">D
             <div class="whisker-line"><div class="dot" id="dot-hc" style="left: 50%;"></div></div>
             <div class="centile-labels"><span>5%</span><span>50%</span><span>95%</span></div>
             <div style="margin-top:5px;"><input type="number" value="50" oninput="moveDot('hc', this.value)" style="width:40px;"> %</div>
         </div>
         <div class="doppler-box">
-            <b>AC: <input type="number" step="0.1" value="94.7" style="width:55px;"> mm</b>
-            <div class="ga-row"><input type="number" value="15" style="width:30px;">W <input type="number" value="5" style="width:25px;">D</div>
+            <b>AC: <input type="number" step="0.1" value="94.7" style="width:55px;"> mm</b><br>
+            <input type="number" value="15" style="width:30px;">W <input type="number" value="5" style="width:25px;">D
             <div class="whisker-line"><div class="dot" id="dot-ac" style="left: 50%;"></div></div>
             <div class="centile-labels"><span>5%</span><span>50%</span><span>95%</span></div>
             <div style="margin-top:5px;"><input type="number" value="50" oninput="moveDot('ac', this.value)" style="width:40px;"> %</div>
         </div>
         <div class="doppler-box">
-            <b>FL: <input type="number" step="0.1" value="17.4" style="width:50px;"> mm</b>
-            <div class="ga-row"><input type="number" value="15" style="width:30px;">W <input type="number" value="1" style="width:25px;">D</div>
+            <b>FL: <input type="number" step="0.1" value="17.4" style="width:50px;"> mm</b><br>
+            <input type="number" value="15" style="width:30px;">W <input type="number" value="1" style="width:25px;">D
             <div class="whisker-line"><div class="dot" id="dot-fl" style="left: 50%;"></div></div>
             <div class="centile-labels"><span>5%</span><span>50%</span><span>95%</span></div>
             <div style="margin-top:5px;"><input type="number" value="50" oninput="moveDot('fl', this.value)" style="width:40px;"> %</div>
         </div>
         <div class="doppler-box">
-            <b>EFW: <input type="number" value="123" style="width:50px;"> g</b>
-            <div class="ga-row"><input type="number" value="15" style="width:30px;">W <input type="number" value="3" style="width:25px;">D</div>
+            <b>EFW: <input type="number" value="123" style="width:50px;"> g</b><br>
+            <input type="number" value="15" style="width:30px;">W <input type="number" value="3" style="width:25px;">D
             <div class="whisker-line"><div class="dot" id="dot-efw" style="left: 50%;"></div></div>
             <div class="centile-labels"><span>5%</span><span>50%</span><span>95%</span></div>
             <div style="margin-top:5px;"><input type="number" value="50" oninput="moveDot('efw', this.value)" style="width:40px;"> %</div>
@@ -338,15 +338,15 @@
 
     <div class="growth-summary">
         <strong>GROWTH ASSESSMENT:</strong><br>
-        Estimated Fetal Weight (EFW) is <strong><input type="number" value="123" style="width: 60px;"> grams</strong> 
+        Estimated Fetal Weight (EFW) is <strong><input type="number" value="123" id="efwValue" style="width: 60px;"> grams</strong> 
         (+/- <input type="number" value="12.3" step="0.1" style="width: 50px;"> gms).
     </div>
 
     <span class="section-title">Impression</span>
     <div class="section-text">
         Single intrauterine gestation corresponding to a gestational age of 
-        <input type="number" value="15" style="width: 40px;"> Weeks <input type="number" value="3" style="width: 35px;"> Days. 
-        Corrected EDD: <input type="date" value="2024-08-11">.
+        <input type="number" id="impWeeks" value="15" style="width: 40px;"> Weeks <input type="number" id="impDays" value="3" style="width: 35px;"> Days. 
+        Corrected EDD: <input type="date" id="impEdd" value="2024-08-11">.
     </div>
 
     <div style="margin-top: 30px; margin-left: auto; text-align: left; width: 250px; font-size: 13px;">
@@ -378,6 +378,41 @@
             let percent = ((val - min) / (max - min)) * 100;
             dot.style.left = Math.min(Math.max(percent, 0), 100) + '%';
         }
+    }
+
+    function calculateDates() {
+        const lmpValue = document.getElementById('lmpDate').value;
+        if (!lmpValue) return;
+
+        const lmp = new Date(lmpValue);
+        
+        // 1. Calculate EDD (LMP + 9 months + 7 days)
+        const edd = new Date(lmp);
+        edd.setMonth(edd.getMonth() + 9);
+        edd.setDate(edd.getDate() + 7);
+        
+        const eddFormatted = edd.toISOString().split('T')[0];
+        document.getElementById('lmpEdd').value = eddFormatted;
+        document.getElementById('cedd').value = eddFormatted;
+        document.getElementById('impEdd').value = eddFormatted;
+
+        // 2. Calculate Gestational Age (Today - LMP)
+        const today = new Date();
+        const diffTime = Math.abs(today - lmp);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        const weeks = Math.floor(diffDays / 7);
+        const days = diffDays % 7;
+
+        // Update Header GA
+        document.getElementById('gaWeeks').value = weeks;
+        document.getElementById('gaDays').value = days;
+        document.getElementById('gaWeeks2').value = weeks;
+        document.getElementById('gaDays2').value = days;
+
+        // Update Impression GA
+        document.getElementById('impWeeks').value = weeks;
+        document.getElementById('impDays').value = days;
     }
 </script>
 
