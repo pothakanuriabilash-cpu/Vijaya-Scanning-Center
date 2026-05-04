@@ -58,6 +58,18 @@
         .section-text { font-size: 13px; line-height: 1.4; margin-bottom: 8px; }
         .section-title { font-weight: bold; text-decoration: underline; margin-top: 10px; display: block; }
 
+        /* New Editable Narrative Boxes */
+        .editable-narrative {
+            display: inline-block;
+            border-bottom: 1px dotted #8d6e63;
+            min-width: 20px;
+            outline: none;
+            padding: 0 2px;
+        }
+        .editable-narrative:hover {
+            background-color: #f5f5f5;
+        }
+
         .doppler-grid {
             display: flex;
             flex-wrap: wrap;
@@ -189,6 +201,7 @@
             input, select, textarea { border: none !important; background: none !important; appearance: none; padding: 0 !important; }
             .report-title-select { border: none !important; background: none !important; appearance: none; }
             .comments-box { border: none !important; display: block !important; }
+            .editable-narrative { border: none !important; }
             @page { size: A4; margin: 0; }
         }
     </style>
@@ -305,33 +318,65 @@
     <span class="section-title">Anatomical Study</span>
     <div class="anatomy-container">
         <table class="anatomy-table">
-            <tr><td class="anatomy-label">Brain</td><td class="anatomy-findings">Lateral ventricle size: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>CSP: <input type="text" value="Seen/Normal" style="width: 100px; text-align: left;"><br>Cerebellum/CM: <input type="text" value="Normal" style="width: 80px; text-align: left;"></td></tr>
-            <tr><td class="anatomy-label">Heart</td><td class="anatomy-findings">Axis/Rotation: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>LVOT/RVOT: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>PAS view: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>Four chamber view: <input type="text" value="Normal" style="width: 80px; text-align: left;"></td></tr>
-            <tr><td class="anatomy-label">Lungs</td><td class="anatomy-findings"><input type="text" value="Normal in echogenicity" style="width: 180px; text-align: left;"><br>No obvious CPAM/CLE seen</td></tr>
-            <tr><td class="anatomy-label">Abdomen</td><td class="anatomy-findings">Stomach bubble visualized<br>Both kidneys and bladder appear <input type="text" value="Normal" style="width: 80px; text-align: left;"> in configuration</td></tr>
-            <tr><td class="anatomy-label">Spine/Limbs</td><td class="anatomy-findings">Spine: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>Skin above spine seen<br>Limbs appear symmetric on both sides</td></tr>
-            <tr><td class="anatomy-label">Face</td><td class="anatomy-findings">Orbits/Lips: <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>Nasal bone seen<br>Premaxillary triangle: <input type="text" value="Normal" style="width: 80px; text-align: left;"></td></tr>
-            <tr><td class="anatomy-label">Cord</td><td class="anatomy-findings"><input type="text" value="Normal central insertion" style="width: 180px; text-align: left;"><br>Three vessel cord (2A+1V) visualized</td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Brain</td><td class="anatomy-findings">
+                <span class="editable-narrative" contenteditable="true">Lateral ventricle size:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">CSP:</span> <input type="text" value="Seen/Normal" style="width: 100px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">Cerebellum/CM:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;">
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Heart</td><td class="anatomy-findings">
+                <span class="editable-narrative" contenteditable="true">Axis/Rotation:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">LVOT/RVOT:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">PAS view:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">Four chamber view:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;">
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Lungs</td><td class="anatomy-findings">
+                <input type="text" value="Normal in echogenicity" style="width: 180px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">No obvious CPAM/CLE seen</span>
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Abdomen</td><td class="anatomy-findings">
+                <span class="editable-narrative" contenteditable="true">Stomach bubble visualized</span><br>
+                <span class="editable-narrative" contenteditable="true">Both kidneys and bladder appear</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"> <span class="editable-narrative" contenteditable="true">in configuration</span>
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Spine/Limbs</td><td class="anatomy-findings">
+                <span class="editable-narrative" contenteditable="true">Spine:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">Skin above spine seen</span><br>
+                <span class="editable-narrative" contenteditable="true">Limbs appear symmetric on both sides</span>
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Face</td><td class="anatomy-findings">
+                <span class="editable-narrative" contenteditable="true">Orbits/Lips:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">Nasal bone seen</span><br>
+                <span class="editable-narrative" contenteditable="true">Premaxillary triangle:</span> <input type="text" value="Normal" style="width: 80px; text-align: left;">
+            </td></tr>
+            <tr><td class="anatomy-label" contenteditable="true">Cord</td><td class="anatomy-findings">
+                <input type="text" value="Normal central insertion" style="width: 180px; text-align: left;"><br>
+                <span class="editable-narrative" contenteditable="true">Three vessel cord (2A+1V) visualized</span>
+            </td></tr>
         </table>
         <div class="comments-box" id="commentsBox">
-            <span class="section-title" style="margin-top: 0;">Comments</span>
+            <span class="section-title" style="margin-top: 0;" contenteditable="true">Comments</span>
             <textarea placeholder="Type clinical notes here..."></textarea>
         </div>
     </div>
 
-    <span class="section-title">Impression</span>
+    <div class="growth-summary">
+        <strong contenteditable="true">GROWTH ASSESSMENT:</strong><br>
+        <span class="editable-narrative" contenteditable="true">Estimated Fetal Weight (EFW) is</span> <strong><input type="number" value="123" id="efwValue" style="width: 60px;"> grams</strong> 
+        <span class="editable-narrative" contenteditable="true">(+/-</span> <input type="number" value="12.3" step="0.1" style="width: 50px;"> <span class="editable-narrative" contenteditable="true">gms).</span>
+    </div>
+
+    <span class="section-title" contenteditable="true">Impression</span>
     <div class="section-text">
-        Single intrauterine gestation corresponding to a gestational age of 
-        <input type="number" id="impWeeks" value="15" style="width: 40px;"> Weeks <input type="number" id="impDays" value="3" style="width: 35px;"> Days. 
-        Corrected EDD: <input type="date" id="impEdd" value="2024-08-11">.
+        <span class="editable-narrative" contenteditable="true">Single intrauterine gestation corresponding to a gestational age of</span> 
+        <input type="number" id="impWeeks" value="15" style="width: 40px;"> <span class="editable-narrative" contenteditable="true">Weeks</span> <input type="number" id="impDays" value="3" style="width: 35px;"> <span class="editable-narrative" contenteditable="true">Days.</span> 
+        <br><span class="editable-narrative" contenteditable="true">Corrected EDD:</span> <input type="date" id="impEdd" value="2024-08-11">.
     </div>
 
     <div style="margin-top: 30px; margin-left: auto; text-align: left; width: 250px; font-size: 13px;">
-        <b>DR. MADHAVI LATHA MD</b><br>RADIOLOGIST
+        <b><span class="editable-narrative" contenteditable="true">DR. MADHAVI LATHA MD</span></b><br><span class="editable-narrative" contenteditable="true">RADIOLOGIST</span>
     </div>
 
     <div style="margin-top: 15px; font-size: 9px; border-top: 1px solid #000; padding-top: 5px;">
-        <b>Disclaimer:</b> I HAVE NEITHER DETECTED NOR DISCLOSED THE GENDER OF THE FETUS TO ANYBODY IN ANY MANNER. FINDINGS DEPEND ON FETAL POSITION, ADEQUACY OF LIQUOR AND PERIOD OF GESTATION.
+        <b contenteditable="true">Disclaimer:</b> <span class="editable-narrative" contenteditable="true">I HAVE NEITHER DETECTED NOR DISCLOSED THE GENDER OF THE FETUS TO ANYBODY IN ANY MANNER. FINDINGS DEPEND ON FETAL POSITION, ADEQUACY OF LIQUOR AND PERIOD OF GESTATION.</span>
     </div>
     <div class="footer-space"></div>
 </div>
